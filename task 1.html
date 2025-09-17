@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Innovative Interactive Navigation Menu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    }
+
+    .credit-bar {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1100;
+      background: linear-gradient(90deg, #26d0ce 0%, #1a2980 100%);
+      color: #fff;
+      padding: 8px 0;
+      text-align: center;
+      font-size: 1.08em;
+      letter-spacing: 2px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(40,44,52,0.08);
+    }
+
+    .navbar {
+      position: fixed;
+      top: 38px;
+      /* Offset by credit bar height */
+      width: 100%;
+      background: rgba(40, 44, 52, 0.85);
+      transition: background 0.4s, box-shadow 0.4s;
+      box-shadow: 0 2px 8px rgba(41, 43, 44, 0.08);
+      z-index: 1000;
+      padding: 10px 0;
+      opacity: 0.97;
+    }
+
+    .navbar.scrolled {
+      background: linear-gradient(90deg, #1a2980 0%, #26d0ce 100%);
+      box-shadow: 0 8px 24px rgba(40, 44, 52, 0.34);
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar li {
+      margin: 0 32px;
+      position: relative;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.13em;
+      padding: 12px 22px;
+      border-radius: 30px;
+      transition: background 0.3s, box-shadow 0.3s, color 0.3s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .navbar a:hover,
+    .navbar a:focus {
+      background: #fff;
+      color: #26d0ce;
+      box-shadow: 0 2px 16px #26d0ceaa;
+      transform: translateY(-3px) scale(1.08);
+    }
+
+    .navbar a::after {
+      content: '';
+      display: block;
+      width: 0%;
+      height: 3px;
+      background: #26d0ce;
+      border-radius: 2px;
+      transition: width 0.3s;
+      position: absolute;
+      left: 25%;
+      bottom: 7px;
+    }
+
+    .navbar a:hover::after {
+      width: 50%;
+    }
+
+    /* About Details Popup */
+    #about-details {
+      display: none;
+      position: fixed;
+      top: 92px;
+      /* Credit bar + navbar */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1050;
+      background: #fff;
+      color: #222;
+      min-width: 290px;
+      max-width: 80vw;
+      box-shadow: 0 6px 24px #26d0ce55;
+      border-radius: 12px;
+      padding: 22px 28px;
+      font-size: 1.14em;
+      font-weight: 500;
+      text-align: center;
+      animation: fadeDown 0.3s ease;
+    }
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+    #about-details .close-btn {
+      display: block;
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      font-size: 1.18em;
+      background: none;
+      border: none;
+      color: #26d0ce;
+      cursor: pointer;
+      font-weight: bold;
+      padding: 0;
+    }
+
+    @media (max-width: 900px) {
+      .navbar ul {
+        flex-direction: column;
+        background: rgba(40, 44, 52, 0.95);
+      }
+      .navbar li {
+        margin: 12px 0;
+      }
+      #about-details {
+        position: static;
+        transform: none;
+        margin: 90px auto 0;
+      }
+    }
+
+    .main-content {
+      margin-top: 120px;
+      padding: 30px;
+      text-align: center;
+    }
+    /* Style for contact details */
+    #contact-details {
+      font-size: 1.2em;
+      color: #222;
+      margin-top: 20px;
+    }
+    #contact-details a {
+      color: #26d0ce;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    #contact-details a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="credit-bar">Developed by Mansoor Ahmed</div>
+  <nav class="navbar" id="navbar">
+    <ul>
+      <li><a id="about-btn"><span class="nav-icon">👤</span> About</a></li>
+      <li><a href="#home"><span class="nav-icon">🏠</span> Home</a></li>
+      <li><a href="#services"><span class="nav-icon">💼</span> Services</a></li>
+      <li><a href="#projects"><span class="nav-icon">🛠️</span> Projects</a></li>
+      <li><a href="#contact"><span class="nav-icon">✉️</span> Contact</a></li>
+    </ul>
+  </nav>
+  <div id="about-details">
+    <button class="close-btn" onclick="closeAbout()">×</button>
+    <strong>Information Science Student</strong><br />
+    HKBK College of Engineering<br />
+    USN: <span style="color: #0d6705;">1HK22IS062</span>
+  </div>
+  <div class="main-content">
+    <h1>Welcome to Our Innovative Website</h1>
+    <p>Scroll down to see the navigation menu change its style. Hover over menu items for beautiful effects!</p>
+    <section style="height: 1200px;">
+      <h2 id="home">Home Section</h2>
+      <p>Add content here to test scrolling behavior.</p>
+      <h2 id="services" style="margin-top: 300px;">Services Section</h2>
+      <h2 id="projects" style="margin-top: 300px;">Projects Section</h2>
+      <h2 id="contact" style="margin-top: 300px;">Contact Section</h2>
+      <div id="contact-details">
+        <p>
+          LinkedIn: 
+          <a href="https://www.linkedin.com/in/mohammed-mansoor-ahmed-716826372" target="_blank" rel="noopener noreferrer">
+            www.linkedin.com/in/mohammed-mansoor-ahmed-716826372
+          </a>
+        </p>
+        <p>Contact No: <strong>8951340891</strong></p>
+      </div>
+    </section>
+  </div>
+  <script>
+    window.addEventListener("scroll", function () {
+      const navbar = document.getElementById("navbar");
+      if (document.documentElement.scrollTop > 40) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+
+    // Show/hide about details
+    document.getElementById("about-btn").addEventListener("click", function (e) {
+      e.preventDefault();
+      document.getElementById("about-details").style.display = "block";
+    });
+    function closeAbout() {
+      document.getElementById("about-details").style.display = "none";
+    }
+    // Optional: Hide details when clicking outside
+    window.addEventListener("click", function (e) {
+      const details = document.getElementById("about-details");
+      const btn = document.getElementById("about-btn");
+      if (
+        details.style.display === "block" &&
+        !details.contains(e.target) &&
+        e.target !== btn
+      ) {
+        closeAbout();
+      }
+    });
+  </script>
+</body>
+</html>
